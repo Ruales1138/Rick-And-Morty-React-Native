@@ -1,27 +1,13 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import Carousel from "../Carousel/Carousel";
 
 export default function HomeScreen({ navigation }) {
-    function test() {
-        console.log('Funciona!')
-    };
-
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <Carousel/>
             <StatusBar style="auto" />
-            <TouchableOpacity
-                onPress={() => {
-                    navigation.navigate('Details');
-                }}
-            >
-                <Image source={{
-                      uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
-                    }}
-                    style={{width: 200, height: 200}}
-                />
-            </TouchableOpacity>
         </View>
     );
 };
