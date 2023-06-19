@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Carousel from "../Carousel/Carousel";
+import styles from "./HomeStyles";
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -11,12 +12,3 @@ export default function HomeScreen({ navigation }) {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Button, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import styles from "./CarrouselStyles";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Carousel() {
     const IMAGES = [
@@ -49,14 +51,26 @@ export default function Carousel() {
     };
 
     return (
-        <View>
-            <View>
-                <Button title="Prev" onPress={prevImage}/>
-                <TouchableOpacity onPress={() => navigation.navigate('Details')}>
-                    <Image source={{uri: IMAGES[current]}} style={{width: 200, height: 200}}/>
-                </TouchableOpacity>
-                <Button title="Next" onPress={nextImage}/>
-            </View>
+        <View style={styles.container}>
+          <View style={styles.horizontalContainer}>
+
+            <TouchableOpacity onPress={prevImage}>
+                <Icon name="chevron-left" size={50} color="black" />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+              <Image
+                source={{ uri: IMAGES[current] }}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={nextImage}>
+                <Icon name="chevron-right" size={50} color="black" />
+            </TouchableOpacity>
+            
+          </View>
         </View>
-    )
+    );
+      
 };
