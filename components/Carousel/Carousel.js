@@ -25,7 +25,7 @@ export default function Carousel() {
       return () => {
         clearInterval(intervalId);
       };
-    }, [isRunning]);
+    }, [isRunning, stopImages]);
 
     function playImages() {
         setCurrent((prevCount) => {
@@ -36,6 +36,9 @@ export default function Carousel() {
 
     function stopImages() {
         setIsRunning(false);
+        setTimeout((isRunning) => {
+          if(!isRunning) setIsRunning(true);
+        }, 5000);
     };
 
     function nextImage() {
