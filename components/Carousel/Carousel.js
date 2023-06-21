@@ -4,18 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import styles from "./CarrouselStyles";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Carousel(props) {
-    const IMAGES = [
-        'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-        'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
-        'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
-        'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
-        'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
-    ];
+export default function Carousel({ data }) {
     const navigation = useNavigation();
     const [current, setCurrent] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
     const TIME = 1500;
+    let images = pushImages();
 
     useEffect(() => {
       let intervalId;
@@ -26,10 +20,16 @@ export default function Carousel(props) {
         clearInterval(intervalId);
       };
     }, [isRunning, stopImages]);
+    
+    function pushImages() {
+      let arrImages = [];
+      data.results?.map(e => arrImages.push(e.image));
+      return arrImages;
+    };
 
     function playImages() {
         setCurrent((prevCount) => {
-          if (prevCount === 4) return 0;
+          if (prevCount === images.length - 1) return 0;
           else return prevCount + 1;
         });
     };
@@ -42,13 +42,13 @@ export default function Carousel(props) {
     };
 
     function nextImage() {
-        if(current >= IMAGES.length - 1) setCurrent(0);
+        if(current >= images.length - 1) setCurrent(0);
         else setCurrent(current + 1);
         stopImages();
     };
 
     function prevImage() {
-        if(current <= 0) setCurrent(IMAGES.length - 1);
+        if(current <= 0) setCurrent(images.length - 1);
         else setCurrent(current - 1);
         stopImages();
     };
@@ -63,7 +63,7 @@ export default function Carousel(props) {
 
             <TouchableOpacity onPress={() => navigation.navigate('Details')}>
               <Image
-                source={{ uri: IMAGES[current] }}
+                source={{ uri: images[current] }}
                 style={styles.image}
               />
             </TouchableOpacity>
