@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from "./CarrouselStyles";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Carousel() {
+export default function Carousel(props) {
     const IMAGES = [
         'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
         'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
