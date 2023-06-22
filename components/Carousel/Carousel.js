@@ -4,12 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import styles from "./CarrouselStyles";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Carousel({ data }) {
+export default function Carousel({ images }) {
     const navigation = useNavigation();
     const [current, setCurrent] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
     const TIME = 2000;
-    let images = pushImages();
 
     useEffect(() => {
       let intervalId;
@@ -20,12 +19,6 @@ export default function Carousel({ data }) {
         clearInterval(intervalId);
       };
     }, [isRunning, stopImages]);
-    
-    function pushImages() {
-      let arrImages = [];
-      data.results?.map(e => arrImages.push(e.image));
-      return arrImages;
-    };
 
     function playImages() {
         setCurrent((prevCount) => {
@@ -61,7 +54,12 @@ export default function Carousel({ data }) {
                 <Icon name="chevron-left" size={50} color="black" />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Details', { id: current + 1 })}>
+            <TouchableOpacity 
+              onPress={() => {
+                navigation.navigate('Details', { id: current + 1 });
+                stopImages();
+              }}
+            >
               <Image
                 source={{ uri: images[current] }}
                 style={styles.image}
