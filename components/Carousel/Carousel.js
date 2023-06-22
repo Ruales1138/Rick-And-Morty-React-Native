@@ -8,7 +8,7 @@ export default function Carousel({ data }) {
     const navigation = useNavigation();
     const [current, setCurrent] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
-    const TIME = 1500;
+    const TIME = 2000;
     let images = pushImages();
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Carousel({ data }) {
         setIsRunning(false);
         setTimeout((isRunning) => {
           if(!isRunning) setIsRunning(true);
-        }, 5000);
+        }, 10000);
     };
 
     function nextImage() {
@@ -61,7 +61,7 @@ export default function Carousel({ data }) {
                 <Icon name="chevron-left" size={50} color="black" />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Details', { id: current + 1 })}>
               <Image
                 source={{ uri: images[current] }}
                 style={styles.image}

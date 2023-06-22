@@ -1,10 +1,24 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { cleanDetail, getDataById } from "../../redux/actions";
 
-export default function DetailScreen() {
+export default function DetailScreen({ route }) {
+    const dispatch = useDispatch();
+    const detail = useSelector(state => state.detail);
+    const { id } = route.params;
+
+    useEffect(() => {
+        dispatch(getDataById(id));
+        return function() {
+            dispatch(cleanDetail());
+        };
+    }, [dispatch, id])
+
     return (
         <View style={styles.container}>
-            <Text>Detail Screen</Text>
+            <Text>{detail.name}</Text>
+            <Image source={{uri: detail.image}} style={{width: 200, height: 200}}/>
         </View>
     )
 };

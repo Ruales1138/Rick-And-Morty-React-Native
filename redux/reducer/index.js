@@ -1,7 +1,8 @@
-import { GET_DATA } from "../actions";
+import { GET_DATA, GET_DATA_BY_ID, CLEAN_DETAIL } from "../actions";
 
 const initialState = {
-    data: []
+    data: [],
+    detail: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -10,6 +11,18 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
+            };
+
+        case GET_DATA_BY_ID:
+            return {
+                ...state,
+                detail: action.payload
+            };
+
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                detail: {}
             };
 
         default:
