@@ -35,7 +35,7 @@ export default function HomeScreen({ navigation }) {
                                     }}>
                                     <Image
                                         source={{uri: e.image}} 
-                                        style={{width: 200, height: 200}}
+                                        style={{width: 150, height: 150}}
                                     />
                                 </TouchableWithoutFeedback>
                                 <Text style={{fontSize: 30}}>{e.name}</Text>
