@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import Carousel from "../Carousel/Carousel";
 import styles from "./HomeStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/actions";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
     const data = useSelector(state => state.data);
     let images = pushImages();
@@ -23,8 +23,28 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <Carousel images={images}/>
+            <ScrollView>
+                <Carousel images={images}/>
+                <View>
+                    {data.results?.map(e => {
+                        return (
+                            <View key={e.id}>
+                                <TouchableWithoutFeedback 
+                                    onPress={() => {
+                                        navigation.navigate('Details' ,{ id: e.id })
+                                    }}>
+                                    <Image
+                                        source={{uri: e.image}} 
+                                        style={{width: 200, height: 200}}
+                                    />
+                                </TouchableWithoutFeedback>
+                                <Text style={{fontSize: 30}}>{e.name}</Text>
+                            </View>
+                        )
+                    })}
+                </View>
+            </ScrollView>
             <StatusBar style="auto" />
         </View>
-    );
+    )
 };
