@@ -1,4 +1,4 @@
-import { GET_DATA, GET_DATA_BY_ID, CLEAN_DETAIL } from "../actions";
+import { GET_DATA, GET_DATA_BY_ID, GET_DATA_BY_NAME, CLEAN_DETAIL } from "../actions";
 
 const initialState = {
     data: [],
@@ -17,6 +17,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detail: action.payload
+            };
+
+        case GET_DATA_BY_NAME:
+            return {
+                ...state,
+                data: action,payload
             };
 
         case CLEAN_DETAIL:
