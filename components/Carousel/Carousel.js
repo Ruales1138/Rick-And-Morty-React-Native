@@ -76,7 +76,7 @@ export default function Carousel({ images }) {
         data={images}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingTop: 200, paddingHorizontal: SIDE_SPACE }}
+        contentContainerStyle={{ paddingTop: 150, paddingHorizontal: SIDE_SPACE }}
         decelerationRate={0}
         snapToInterval={CONTAINER_WIDTH}
         scrollEventThrottle={16}

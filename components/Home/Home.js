@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import Carousel from "../Carousel/Carousel";
 import styles from "./HomeStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/actions";
+import Search from "../Search/Search";
 
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <ScrollView>
                 <Carousel images={images}/>
+                <Search/>
                 <View>
                     {data.results?.map(e => {
                         return (
