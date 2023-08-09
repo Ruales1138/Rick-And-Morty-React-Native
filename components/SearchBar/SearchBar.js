@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Button, TouchableOpacity } from 'react-native';
-import styles from './SearchStyles';
+import styles from './SearchBarStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Search() {
+export default function SearchBar() {
     const [inputValue, setInputValue] = useState('');
   
     function handleInputChange(text) {
