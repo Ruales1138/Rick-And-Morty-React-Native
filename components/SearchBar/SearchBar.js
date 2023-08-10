@@ -12,6 +12,12 @@ export default function SearchBar() {
     function handleInputChange(text) {
       setInputValue(text);
     };
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      dispatch(getDataByName(inputValue))
+      setInputValue('');
+    };
   
     return (
       <View style={styles.container}>
@@ -22,6 +28,7 @@ export default function SearchBar() {
           value={inputValue}
         />
         <TouchableOpacity
+          onPress={handleSubmit}
           style={styles.button}
         >
             <Icon name="search" size={24} color="gray" />

@@ -22,7 +22,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_DATA_BY_NAME:
             return {
                 ...state,
-                data: action,payload
+                data: action.payload
             };
 
         case CLEAN_DETAIL:
