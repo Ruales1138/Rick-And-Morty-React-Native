@@ -32,17 +32,16 @@ export default function HomeScreen({ navigation }) {
                     <View style={{marginTop: 100, width}}>
                         {data.results.map(e => {
                             return (
-                                <View key={e.id}>
-                                    <TouchableWithoutFeedback 
-                                        onPress={() => {
-                                            navigation.navigate('Details' ,{ id: e.id })
-                                        }}>
-                                        <Image
-                                            source={{uri: e.image}} 
-                                            style={{width: 150, height: 150}}
-                                        />
-                                    </TouchableWithoutFeedback>
-                                    <Text style={{fontSize: 30}}>{e.name}</Text>
+                                <View style={styles.container} key={e.id}>
+                                    <View key={e.id} style={styles.items}>
+                                        <TouchableWithoutFeedback 
+                                            onPress={() => {
+                                                navigation.navigate('Details' ,{ id: e.id })
+                                            }}>
+                                            <Image source={{uri: e.image}} style={styles.image}/>
+                                        </TouchableWithoutFeedback>
+                                        <Text style={styles.text}>{e.name}</Text>
+                                    </View>
                                 </View>
                             )
                         })}
